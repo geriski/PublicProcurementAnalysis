@@ -16,7 +16,7 @@ for notice_main_name in notice_main_names:
     
     #print(notice_main_name)
     
-    notice_main_name = notice_main_name.encode('utf-8').decode('utf-8')
+    notice_main_name = notice_main_name
     length_name_start = notice_page.find(notice_main_name)
     #print(length_name_start)
     length_name_end = notice_page[length_name_start:].find('class="timark"')
