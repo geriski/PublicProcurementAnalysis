@@ -52,4 +52,16 @@ for notice_main_name in notice_main_names:
         notice_attributes[notice_main_name] =  notice_main_values[0]
         notice_main_values = tree.xpath('//div[@class="txtmark"]/span/@title')
         notice_attributes["Fő CPV-kód szöveges"] =  notice_main_values[0]
+     
+    #Hirdetmény feladásának dátuma
+    if notice_main_name == 'E hirdetmény feladásának dátuma:':
+         
+        length_name_start = notice_page.find(notice_main_name)
+        length_name_end = notice_page[length_name_start:].find('</html>')
+        tree_name_string = notice_page[length_name_start-59:length_name_start+length_name_end-6]
+        parser = etree.HTMLParser()
+        tree   = etree.parse(StringIO(tree_name_string), parser)
+        notice_main_values = tree.xpath('//div[@class="txtmark"]/text()')
+        notice_attributes[notice_main_name] =  notice_main_values      
+        
 print(notice_attributes)
