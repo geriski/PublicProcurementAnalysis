@@ -50,5 +50,6 @@ for notice_main_name in notice_main_names:
       
         notice_main_values = tree.xpath('//div[@class="txtmark"]/span/text()')
         notice_attributes[notice_main_name] =  notice_main_values[0]
-
+        notice_main_values = tree.xpath('//div[@class="txtmark"]/span/@title')
+        notice_attributes["Fő CPV-kód szöveges"] =  notice_main_values[0]
 print(notice_attributes)
