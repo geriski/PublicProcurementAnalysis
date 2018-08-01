@@ -16,7 +16,6 @@ for notice_main_name in notice_main_names:
     
     #print(notice_main_name)
     
-    notice_main_name = notice_main_name
     length_name_start = notice_page.find(notice_main_name)
     #print(length_name_start)
     length_name_end = notice_page[length_name_start:].find('class="timark"')
@@ -31,10 +30,25 @@ for notice_main_name in notice_main_names:
     
     notice_main_values = tree.xpath('//div[@class="txtmark"]/text()')
     #print(notice_main_values)
-    notice_attributes[notice_main_name] =  notice_main_values  
-
+    notice_attributes[notice_main_name] =  notice_main_values
+    
+    #Elnevezés:
+    if notice_main_name == 'Elnevezés:':
+    
+        notice_attributes[notice_main_name]
+        length_name_start = notice_page.find(notice_main_name)
+        length_name_end = notice_page[length_name_start:].find('class="timark"')
+        tree_name_string = notice_page[length_name_start-59:length_name_start+length_name_end-6]
+        parser = etree.HTMLParser()
+        tree   = etree.parse(StringIO(tree_name_string), parser)
+    
+        notice_main_values = tree.xpath('//div[@class="txtmark"]/p/text()')
+        notice_attributes[notice_main_name] =  notice_main_values
+    
+    #CPVkód:
+    if notice_main_name == 'Fő CPV-kód':
+      
+        notice_main_values = tree.xpath('//div[@class="txtmark"]/span/text()')
+        notice_attributes[notice_main_name] =  notice_main_values[0]
 
 print(notice_attributes)
-
-
-
